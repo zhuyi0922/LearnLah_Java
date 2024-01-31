@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +25,10 @@ public class Record {
     private Time startTime;
 
     @Column(name = "end_time")
-    private Time end_time;
+    private Time endTime;
 
     @Column(name = "date")
-    private String date;
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

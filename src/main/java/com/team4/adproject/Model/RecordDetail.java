@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @Entity
@@ -17,6 +19,8 @@ public class RecordDetail {
     @Column(name = "attempts")
     private Integer attempts;
 
+    @Column(name = "last_attempt_time")
+    private Date lastAttemptTime;
 
     @ManyToOne
     @JoinColumn(name = "record_id")
@@ -27,7 +31,7 @@ public class RecordDetail {
     private Word word;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", columnDefinition="ENUM()")
+    @Column(name = "status", columnDefinition="ENUM('Failed', 'Success_first', 'Success_second', 'Success_third')")
     private StatusEnum status;
 
 // maybe need a time to record the date,, for the strategy of generating reviewing wordList
