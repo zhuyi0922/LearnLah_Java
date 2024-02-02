@@ -8,9 +8,7 @@ import com.team4.adproject.Service.RecordDetailService;
 import com.team4.adproject.Service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,6 +43,16 @@ public class APIController {
     @GetMapping("/getBookList")
     public List<Book> getBookList() {
         return bookService.findAllBook();
+    }
+
+    @PostMapping("/setLearningSchedule")
+    public void setLearningSchedule() {
+        // scheduleService.setLearningSchedule();
+    }
+
+    @GetMapping("/getLearningSchedule")
+    public void getLearningSchedule() {
+
     }
 
 }

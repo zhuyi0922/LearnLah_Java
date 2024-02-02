@@ -13,8 +13,8 @@ import java.sql.Date;
 public class RecordDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "record_id", nullable = false)
-    private Integer recordId;
+    @Column(name = "record_detail_id", nullable = false)
+    private Integer recordDetailId;
 
     @Column(name = "attempts")
     private Integer attempts;

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserLearningScheduleRepository extends JpaRepository<UserLearningSchedule, Integer> {
-    UserLearningSchedule findByUserId(int userId);
+    //UserLearningSchedule findByUserId(int userId);
 
     UserLearningSchedule findByUser_UserIdAndBook_BookId(Integer userId, String bookId);
 }
