@@ -23,6 +23,10 @@ public class RecordDetailServiceImpl implements RecordDetailService {
         Date sevenDaysAgo = Date.valueOf(today.minusDays(7)) ;
         Date fifteenDaysAgo = Date.valueOf(today.minusDays(15)) ;
         Date todayDate = Date.valueOf(today) ;
+        // 0. 前5天失败的单词
+        List<String> wordList0 = recordDetailRepository.findByLastAttemptTimeBetweenAndStatus(sevenDaysAgo, todayDate, StatusEnum.Failed)
+                                                        .stream()
+                                                        .map(x -> x.getWord().getWordId()).toList();
         // 1. 前3天背过1次的单词,
         List<String> wordList1 = recordDetailRepository.findByLastAttemptTimeBetweenAndStatus(threeDaysAgo, todayDate, StatusEnum.Success_first)
                                                         .stream()

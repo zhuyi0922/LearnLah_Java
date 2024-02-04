@@ -11,7 +11,7 @@ class AdProjectApplicationTests {
 	private DictionaryServiceImpl dictionaryService;
 	@Test
 	void TestLoadJson() {
-		dictionaryService.getDicFromJson("IELTSluan_2");
+		dictionaryService.getDicNew("IELTSluan_2");
 	}
 
 }

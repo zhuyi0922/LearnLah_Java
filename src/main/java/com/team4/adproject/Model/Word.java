@@ -13,10 +13,13 @@ public class Word {
     @Column(name = "word_id", nullable = false)
     private String wordId;
 
+    @Column(name = "wordRank")
+    private int wordRank;
+
     @Column(name = "word_head")
     private String wordHead;
 
-    @Column(name = "word_sentence")
+/*    @Column(name = "word_sentence")
     private String wordSentence;
 
     @Column(name = "word_cn_sentence")
@@ -35,7 +38,8 @@ public class Word {
     private String trans_pos;
 
     @Column(name = "trans_trans_other")
-    private String trans_Other;
+    private String trans_Other;*/
+
 
     @ManyToOne
     @JoinColumn(name = "book_id")
