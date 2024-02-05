@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "record")
 public class Record {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recordId", nullable = false)
@@ -40,5 +41,6 @@ public class Record {
 
     @OneToMany(mappedBy = "record", orphanRemoval = true)
     private List<RecordDetail> recordDetails = new ArrayList<>();
+
 
 }
