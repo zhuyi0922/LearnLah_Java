@@ -8,5 +8,5 @@ import java.util.List;
 public interface UserLearningScheduleRepository extends JpaRepository<UserLearningSchedule, Integer> {
     //UserLearningSchedule findByUserId(int userId);
 
-    UserLearningSchedule findByUser_UserIdAndBook_BookId(Integer userId, String bookId);
+    UserLearningSchedule findByUser_UserId(Integer userId);
 }

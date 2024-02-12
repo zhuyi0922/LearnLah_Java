@@ -1,16 +1,18 @@
 package com.team4.adproject.Controller;
 
-import com.team4.adproject.Model.Book;
-import com.team4.adproject.Model.User;
-import com.team4.adproject.Model.Word;
+import com.team4.adproject.Model.*;
+import com.team4.adproject.Model.Record;
 import com.team4.adproject.Service.BookServiceImpl;
 import com.team4.adproject.Service.RecordDetailService;
 import com.team4.adproject.Service.ScheduleService;
+import com.team4.adproject.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -21,17 +23,19 @@ public class APIController {
     private ScheduleService scheduleService;
     @Autowired
     private BookServiceImpl bookService;
+    @Autowired
+    private UserServiceImpl userService;
 
     @GetMapping("/reviewWordList")
-    public List<String> getReviewWordList() {
-        //return reviewWordIdList;
-        return recordDetailService.getReviewWordList();
+    public List<String> getReviewWordList(@RequestParam("username") String username) {
+        var userId = userService.findByUsername(username).getUserId();
+        return recordDetailService.getReviewWordList(userId);
     }
 
-    @GetMapping("/curentWordIndex")
-    public int getWordIndex(int userId, String bookId) {
-        // 注意前端回来的时候这个int类型的转换
-        return scheduleService.getWordIndex(userId, bookId);
+    @GetMapping("/getCurrentWordIndex")
+    public int getWordIndex(@RequestParam("username") String username) {
+        var userId = userService.findByUsername(username).getUserId();
+        return scheduleService.getWordIndex(userId);
     }
 
     @GetMapping("/getBook")
@@ -46,8 +50,8 @@ public class APIController {
     }
 
     @PostMapping("/setLearningSchedule")
-    public void setLearningSchedule() {
-        // scheduleService.setLearningSchedule();
+    public Boolean setLearningSchedule(@RequestBody Map<String, String> map) {
+        return scheduleService.setLearningSchedule(map);
     }
 
     @GetMapping("/getLearningSchedule")
@@ -55,4 +59,15 @@ public class APIController {
 
     }
 
+    @PostMapping("/login")
+    public Boolean login(@RequestBody Map<String, String> credentials) {
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+        return userService.login(username, password);
+    }
+
+    @PostMapping("/register")
+    public Boolean register(String username, String password) {
+        return userService.register(username, password);
+    }
 }

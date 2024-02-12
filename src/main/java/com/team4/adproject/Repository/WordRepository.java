@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface WordRepository extends JpaRepository<Word, String> {
 
+
+    Word findByWordRank(int wordRank);
 }

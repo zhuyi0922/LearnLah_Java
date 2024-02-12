@@ -1,7 +1,9 @@
 package com.team4.adproject.Model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
@@ -12,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "record")
 public class Record {
     @Id
