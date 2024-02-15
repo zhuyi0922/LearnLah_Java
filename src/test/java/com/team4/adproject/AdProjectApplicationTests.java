@@ -7,11 +7,18 @@ import com.team4.adproject.Repository.RecordRepository;
 import com.team4.adproject.Repository.WordRepository;
 import com.team4.adproject.Service.DictionaryServiceImpl;
 import com.team4.adproject.Service.UserServiceImpl;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -103,6 +110,33 @@ class AdProjectApplicationTests {
 			recordDetailRepository.save(recordDetail);
 		}
 		return recordDetails;
+	}
+
+	@Test
+	public void test(){
+		try{
+			URL apiUrl = new URL("http://3.27.46.145:8080/predict-user-cluster");
+			HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setDoOutput(true);
+
+			String json = "{\"accuracy\": [0.9],\"login_streak\": [1],\"quiz_time_taken\": [20],\"quiz_word_learnt\": [30]}";
+			byte[] input = json.getBytes("utf-8");
+			try (OutputStream outputStream = connection.getOutputStream()) {
+				outputStream.write(input, 0, input.length);
+			}
+			InputStream inputStream = connection.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+			StringBuilder responseBuilder = new StringBuilder();
+			responseBuilder.append(reader.readLine());
+			reader.close();
+			connection.disconnect();
+			System.out.println(responseBuilder.toString());
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 }
 

@@ -34,4 +34,8 @@ public class ScheduleServiceImpl implements ScheduleService{
         repo.save(schedule);
         return true;
     }
+    @Override
+    public UserLearningSchedule getLearningSchedule(int userId) {
+        return repo.findByUser_UserId(userId);
+    }
 }
