@@ -38,4 +38,9 @@ public class ScheduleServiceImpl implements ScheduleService{
     public UserLearningSchedule getLearningSchedule(int userId) {
         return repo.findByUser_UserId(userId);
     }
+
+    @Override
+    public void updateWordIndex(UserLearningSchedule schedule) {
+        repo.save(schedule);
+    }
 }

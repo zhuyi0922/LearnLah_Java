@@ -6,6 +6,7 @@ import com.team4.adproject.Repository.RecordDetailRepository;
 import com.team4.adproject.Repository.RecordRepository;
 import com.team4.adproject.Repository.WordRepository;
 import com.team4.adproject.Service.DictionaryServiceImpl;
+import com.team4.adproject.Service.MachineLearningServiceImpl;
 import com.team4.adproject.Service.UserServiceImpl;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -13,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
@@ -37,6 +35,9 @@ class AdProjectApplicationTests {
 	private UserServiceImpl userService;
 	@Autowired
 	private WordRepository wordRepository;
+	@Autowired
+	private MachineLearningServiceImpl machineLearningService;
+
 	@Test
 	void TestLoadJson() {
 		dictionaryService.getDicNew("IELTSluan_2");
@@ -133,6 +134,17 @@ class AdProjectApplicationTests {
 			reader.close();
 			connection.disconnect();
 			System.out.println(responseBuilder.toString());
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void test22()  {
+		try {
+			String a = machineLearningService.getResult();
+			System.out.println(a);
 		}
 		catch (Exception e){
 			e.printStackTrace();

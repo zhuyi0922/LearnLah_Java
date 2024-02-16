@@ -1,6 +1,9 @@
 package com.team4.adproject.Service;
 
+import com.team4.adproject.Model.Record;
+import com.team4.adproject.Model.RecordDetail;
 import com.team4.adproject.Model.StatusEnum;
+import com.team4.adproject.Model.Word;
 import com.team4.adproject.Repository.RecordDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +44,13 @@ public class RecordDetailServiceImpl implements RecordDetailService {
                                                         .stream()
                                                         .map(x -> x.getWord().getWordRank()).toList();
         return Stream.concat(wordList1.stream(), Stream.concat(wordList2.stream(), wordList3.stream())).toList();
-
+    }
+    @Override
+    public RecordDetail findByRecordAndWord(Record record, Word word) {
+        return recordDetailRepository.findByRecordAndWord(record, word);
+    }
+    @Override
+    public void addRecordDetail(RecordDetail recordDetail) {
+        recordDetailRepository.save(recordDetail);
     }
 }

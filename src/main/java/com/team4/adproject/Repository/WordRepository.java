@@ -9,4 +9,6 @@ public interface WordRepository extends JpaRepository<Word, String> {
 
 
     Word findByWordRank(int wordRank);
+
+    Word findByWordId(String wordId);
 }
