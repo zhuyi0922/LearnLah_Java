@@ -7,6 +7,7 @@ import com.team4.adproject.Repository.RecordRepository;
 import com.team4.adproject.Repository.WordRepository;
 import com.team4.adproject.Service.DictionaryServiceImpl;
 import com.team4.adproject.Service.MachineLearningServiceImpl;
+import com.team4.adproject.Service.RecordServiceImpl;
 import com.team4.adproject.Service.UserServiceImpl;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,10 @@ class AdProjectApplicationTests {
 	private WordRepository wordRepository;
 	@Autowired
 	private MachineLearningServiceImpl machineLearningService;
+	@Autowired
+	private RecordRepository repo;
+	@Autowired
+	private RecordServiceImpl recordService;
 
 	@Test
 	void TestLoadJson() {
@@ -142,13 +147,7 @@ class AdProjectApplicationTests {
 
 	@Test
 	public void test22()  {
-		try {
-			String a = machineLearningService.getResult();
-			System.out.println(a);
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
+		recordService.findByUserAndSuccess(userService.findByUsername("zhu")).forEach(System.out::println);
 	}
 }
 

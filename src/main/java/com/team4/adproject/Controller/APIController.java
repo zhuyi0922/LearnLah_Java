@@ -102,6 +102,7 @@ public class APIController {
             record = originRecord;
             record.setStatus(dto.getStatus());
             record.setEndTime (dto.getEndTime());
+            // userschedule的finished day
             recordService.addRecord(record);
         }
         else{
@@ -148,9 +149,9 @@ public class APIController {
     }
 
     @GetMapping("/getResult")
-    public String getResult(@RequestParam("username") String username) {
+    public String getResult(@RequestParam("username") String username, @RequestParam("accuracy") float accuracy) {
         try {
-            return machineLearningService.getResult();
+            return machineLearningService.getResult(username, accuracy);
         }
         catch (Exception e){
             return "error";

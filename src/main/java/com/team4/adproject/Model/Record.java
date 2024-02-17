@@ -41,7 +41,7 @@ public class Record {
     @Column(name = "status", columnDefinition="ENUM('Finished', 'Unfinished')")
     private StatusEnum status;
 
-    @OneToMany(mappedBy = "record", orphanRemoval = true)
+    @OneToMany(mappedBy = "record", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<RecordDetail> recordDetails = new ArrayList<>();
 
 }
