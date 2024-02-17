@@ -98,16 +98,16 @@ public class APIController {
             record.setStartTime(dto.getStartTime());
             recordService.addRecord(record);
         }
-        else if (dto.getStatus()==StatusEnum.Finished){
+        else{
             record = originRecord;
+        }
+        if (dto.getStatus()==StatusEnum.Finished){
             record.setStatus(dto.getStatus());
             record.setEndTime (dto.getEndTime());
             // userschedule的finished day
             recordService.addRecord(record);
         }
-        else{
-            record = originRecord;
-        }
+
         int newWordSize = 0;
         // 如果有了, 则直接添加recordDetail 或者 更改 已存在的recordDetail
         for (RecordDetailPOJO recordDetailPOJO : dto.getRecordDetailPOJOList()) {
