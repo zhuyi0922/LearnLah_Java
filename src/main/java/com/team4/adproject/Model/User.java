@@ -23,6 +23,29 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "avatarUrl")
+    private String avatarUrl;
+
+    @Column(name = "gender")
+    private Integer gender;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "user_status")
+    private Integer userStatus;
+
+    @Column(name = "is_delete")
+    private Integer isDelete;
+    @Column(name = "user_role")
+    private Integer userRole;
+
+    @Column(name = "id_code")
+    private String idCode;
+
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Record> records = new ArrayList<>();
 
